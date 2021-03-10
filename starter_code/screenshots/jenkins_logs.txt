@@ -1,0 +1,114 @@
+Started by user Admin
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/Ecommerce-app
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] Done
+The recommended git tool is: NONE
+using credential d3cd76c9-78da-48f9-9c30-c4e270c257bd
+Cloning the remote Git repository
+Cloning repository https://github.com/AkashSevana/auth-course.git
+ > git init /var/jenkins_home/workspace/Ecommerce-app # timeout=10
+Fetching upstream changes from https://github.com/AkashSevana/auth-course.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.26.2'
+using GIT_SSH to set credentials 
+ > git fetch --tags --force --progress -- https://github.com/AkashSevana/auth-course.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/AkashSevana/auth-course.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+Avoid second fetch
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision 089dccb1d5b5bfe6ef96a0d31c4498052ba61635 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 089dccb1d5b5bfe6ef96a0d31c4498052ba61635 # timeout=10
+Commit message: "fixed createUser testcase."
+ > git rev-list --no-walk 089dccb1d5b5bfe6ef96a0d31c4498052ba61635 # timeout=10
+[Ecommerce-app] $ mvn -f starter_code/pom.xml clean compile package
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.example:auth-course >-----------------------
+[INFO] Building auth-course 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ auth-course ---
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ auth-course ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ auth-course ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 20 source files to /var/jenkins_home/workspace/Ecommerce-app/starter_code/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ auth-course ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ auth-course ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 20 source files to /var/jenkins_home/workspace/Ecommerce-app/starter_code/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ auth-course ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /var/jenkins_home/workspace/Ecommerce-app/starter_code/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ auth-course ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 6 source files to /var/jenkins_home/workspace/Ecommerce-app/starter_code/target/test-classes
+[INFO] /var/jenkins_home/workspace/Ecommerce-app/starter_code/src/test/java/com/example/demo/controllers/UserControllerTest.java: /var/jenkins_home/workspace/Ecommerce-app/starter_code/src/test/java/com/example/demo/controllers/UserControllerTest.java uses unchecked or unsafe operations.
+[INFO] /var/jenkins_home/workspace/Ecommerce-app/starter_code/src/test/java/com/example/demo/controllers/UserControllerTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ auth-course ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.example.demo.controllers.UserControllerTest
+08:23:11.038 [main] INFO com.example.demo.controllers.UserController - User test created successfully
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.721 s - in com.example.demo.controllers.UserControllerTest
+[INFO] Running com.example.demo.controllers.CartControllerTest
+08:23:11.431 [main] ERROR com.example.demo.controllers.CartController - Add to cart failed for testInvalidUser, error 404 NOT_FOUND
+08:23:11.439 [main] ERROR com.example.demo.controllers.CartController - Add to cart failed for testInvalidUser, error 404 NOT_FOUND
+08:23:11.474 [main] INFO com.example.demo.controllers.CartController - Item successfully removed from cart for user test
+08:23:11.489 [main] INFO com.example.demo.controllers.CartController - Item successfully added to cart for user test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.185 s - in com.example.demo.controllers.CartControllerTest
+[INFO] Running com.example.demo.controllers.OrderControllerTest
+08:23:11.675 [main] INFO com.example.demo.controllers.OrderController - Get orders for test was success
+08:23:11.691 [main] INFO com.example.demo.controllers.OrderController - Order submitted successfully for test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.161 s - in com.example.demo.controllers.OrderControllerTest
+[INFO] Running com.example.demo.controllers.ItemControllerTest
+08:23:11.719 [main] INFO com.example.demo.controllers.ItemController - Getting Items By id 1
+08:23:11.725 [main] INFO com.example.demo.controllers.ItemController - Getting Items By id 23
+08:23:11.741 [main] INFO com.example.demo.controllers.ItemController - Getting Items for name test
+08:23:11.747 [main] INFO com.example.demo.controllers.ItemController - Getting Items for name test name
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s - in com.example.demo.controllers.ItemControllerTest
+[INFO] Running com.example.demo.SareetaApplicationTests
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in com.example.demo.SareetaApplicationTests
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-war-plugin:3.2.2:war (default-war) @ auth-course ---
+[INFO] Packaging webapp
+[INFO] Assembling webapp [auth-course] in [/var/jenkins_home/workspace/Ecommerce-app/starter_code/target/auth-course-0.0.1-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Webapp assembled in [686 msecs]
+[INFO] Building war: /var/jenkins_home/workspace/Ecommerce-app/starter_code/target/auth-course-0.0.1-SNAPSHOT.war
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.1.5.RELEASE:repackage (repackage) @ auth-course ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  30.004 s
+[INFO] Finished at: 2021-03-10T08:23:19Z
+[INFO] ------------------------------------------------------------------------
+[DeployPublisher][INFO] Attempting to deploy 1 war file(s)
+[DeployPublisher][INFO] Deploying /var/jenkins_home/workspace/Ecommerce-app/starter_code/target/auth-course-0.0.1-SNAPSHOT.war to container Tomcat 9.x Remote with context myApp
+  [/var/jenkins_home/workspace/Ecommerce-app/starter_code/target/auth-course-0.0.1-SNAPSHOT.war] is not deployed. Doing a fresh deployment.
+  Deploying [/var/jenkins_home/workspace/Ecommerce-app/starter_code/target/auth-course-0.0.1-SNAPSHOT.war]
+Finished: SUCCESS
