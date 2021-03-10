@@ -2,9 +2,11 @@ package com.example.demo.controllers;
 
 import java.util.Optional;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import com.example.demo.model.requests.CreateUserRequest;
 
 @RestController
 @RequestMapping("/api/user")
+@Slf4j
 public class UserController {
 	
 	@Autowired
@@ -27,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	private CartRepository cartRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@GetMapping("/id/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
@@ -40,13 +46,25 @@ public class UserController {
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
+	public ResponseEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
 		User user = new User();
 		user.setUsername(createUserRequest.getUsername());
 		Cart cart = new Cart();
 		cartRepository.save(cart);
 		user.setCart(cart);
+
+		if(createUserRequest.getPassword().length() < 7 ){
+			log.error("Failed to create user : {}, Reason: {}", user.getUsername(), "invalid password");
+			return ResponseEntity.badRequest().body("Password must be at least 7 characters.");
+		}else if (!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
+			log.error("Failed to create user : {}, Reason: {}", user.getUsername(), "confirm password doesn't match");
+			return ResponseEntity.badRequest().body("Password does not match confirm password field");
+		}
+
+		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
 		userRepository.save(user);
+
+		log.info("User {} created successfully", createUserRequest.getUsername());
 		return ResponseEntity.ok(user);
 	}
 	
