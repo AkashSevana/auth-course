@@ -8,10 +8,12 @@ import com.example.demo.model.requests.CreateUserRequest;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
+import static com.example.demo.TestUtils.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -24,9 +26,17 @@ public class UserControllerTest extends SareetaApplicationTests {
     @Mock
     private BCryptPasswordEncoder encoder;
 
+    @Mock
+    private CartRepository cartRepository;
+
+    @Mock
+    private UserRepository userRepository;
+
     @Test
     public void testCreateUser(){
         when(encoder.encode("password")).thenReturn("hashedpassword");
+        when(cartRepository.save(Mockito.any())).thenReturn(createCart(createUser()));
+        when(userRepository.save(Mockito.any())).thenReturn(createUser());
 
         CreateUserRequest request = new CreateUserRequest();
         request.setUsername("test");
